@@ -33,4 +33,4 @@ jobs:
           docker rm stockapi || true
       - name: Start REST API in Docker
         run: |
-          docker run -d --name stockapi --rm -p 8089:8000 stockapi
+          docker run -d --name stockapi -p 8089:8000 stockapi
