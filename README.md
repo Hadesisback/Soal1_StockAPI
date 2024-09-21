@@ -26,7 +26,7 @@ curl -X POST http://febrian.me:8089/stocks -H "Content-Type: application/json" -
 ###  Get a stock by ID
 #### GET /stocks
 ```
-curl http://localhost:8000/stocks/1
+curl http://febrian.me:8089/stocks/1
 ```
 
 
