@@ -23,6 +23,13 @@ Linux
 curl -X POST http://febrian.me:8089/stocks -H "Content-Type: application/json" -d '{"name": "Apple Inc.", "code": "AAPL", "price": 150.00, "frequency": 100, "volume": 2000}'
 ```
 
+###  Get a stock by ID
+#### GET /stocks
+```
+curl http://localhost:8000/stocks/1
+```
+
+
 ### Get all stocks
 #### GET /stocks
 ```
