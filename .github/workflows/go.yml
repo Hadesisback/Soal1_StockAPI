@@ -26,7 +26,7 @@ jobs:
       
       - name: Build Docker Image for REST API
         run: |
-          docker build -t stockapi ./
+          docker build ./ -t stockapi
 
       - name: Stop and remove previous backend container
         run: |
