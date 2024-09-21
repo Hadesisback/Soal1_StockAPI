@@ -1,0 +1,37 @@
+name: StockAPI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: self-hosted
+
+    steps:
+     
+
+      
+      - name: Create config.yaml for backend
+        run: |
+          mkdir -p config
+          echo "database:" > config/config.yaml
+          echo "  host: \"${{ secrets.DB_HOST }}\"" >> config/config.yaml
+          echo "  user: \"${{ secrets.DB_USER }}\"" >> config/config.yaml
+          echo "  password: \"${{ secrets.DB_PASSWORD }}\"" >> config/config.yaml
+          echo "  dbname: \"${{ secrets.DB_NAME }}\"" >> config/config.yaml
+          echo "  port: ${DB_PORT}" >> config/config.yaml
+          echo "  sslmode: \"${{ secrets.DB_SSLMODE }}\"" >> config/config.yaml
+      
+      - name: Build Docker Image for REST API
+        run: |
+          docker build -t stockapi .
+
+      - name: Stop and remove previous backend container
+        run: |
+          docker stop stockapi || true
+          docker rm stockapi || true
+      - name: Start REST API in Docker
+        run: |
+          docker run -d --name stockapi --rm -p 8089:8000 stockapi
